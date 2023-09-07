@@ -1,16 +1,15 @@
 import React from "react";
-import FavIcon from './FavIcon';
-import "../styles/PhotoListItem.scss";
+// import FavIcon from './FavIcon';
 import "../styles/PhotoFavButton.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 function PhotoListItem(props) {
-  const { username, imageSource, id, location, profile, like, giveLike} = props;
-
+  const { username, imageSource, id, location, profile, like, giveLike, topic } = props;
+  // console.log(props);
   return (
     <div className="photo-list__item">
       <div>
-        <PhotoFavButton like = {like} giveLike = {giveLike}/>
+        <PhotoFavButton like={like} giveLike={giveLike} />
         <img
           src={imageSource}
           alt={`${username}`}
@@ -26,7 +25,7 @@ function PhotoListItem(props) {
         <div className="photo-list__user-info">
           <p>{username}</p>
           <p className="photo-list__user-location">
-            {location.city}, {location.country}
+            {location["city"]}, {location["country"]}
           </p>
         </div>
       </div>
