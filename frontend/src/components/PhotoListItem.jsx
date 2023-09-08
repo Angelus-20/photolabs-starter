@@ -1,10 +1,9 @@
 import React from "react";
-// import FavIcon from './FavIcon';
 import "../styles/PhotoFavButton.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 function PhotoListItem(props) {
-  const { username, imageSource, id, location, profile, like, giveLike, topic } = props;
+  const { username, imageSource, location, profile, like, giveLike } = props;
   // console.log(props);
   return (
     <div className="photo-list__item">
