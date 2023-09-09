@@ -1,17 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import FavIcon from './FavIcon';
 import "../styles/PhotoListItem.scss";
 import "../styles/PhotoFavButton.scss";
 
-function PhotoFavButton() {
-  const [like, setLike] = useState('off');
-  const giveLike = () => setLike((like === "on") ? "off" : "on");
-  const handleClick = () => giveLike();
-  const isPhotoLiked = like === 'on';
+function PhotoFavButton({handleClick, isFavorite, id}) {
 
   return (
-    <div onClick={handleClick} className="photo-list__fav-icon">
-      <FavIcon selected={isPhotoLiked}/>
+    <div onClick={() => handleClick(id)} className="photo-list__fav-icon">
+
+      <FavIcon selected={isFavorite} id={id}/>
+       {/* passing id to this component and pass to handleclick */}
+       {/* pass favorites all the way down here */}
     </div>
   );
 }

@@ -2,13 +2,21 @@ import React from "react";
 import "../styles/PhotoFavButton.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-function PhotoListItem(props) {
-  const { username, imageSource, location, profile, like, giveLike } = props;
-  // console.log(props);
+function PhotoListItem({
+  username,
+  imageSource,
+  location,
+  profile,
+  addToFavorites,
+  id,
+  favorites }) {
+    
+       {/* pass favorites all the way down here */}
+      //  check if current id exists in the array [1, 2, 3] if the current is 4 is not favorited but if 3 then favorited 
   return (
     <div className="photo-list__item">
       <div>
-        <PhotoFavButton like={like} giveLike={giveLike} />
+        <PhotoFavButton handleClick={addToFavorites} favorites={favorites} id={id}/>
         <img
           src={imageSource}
           alt={`${username}`}
