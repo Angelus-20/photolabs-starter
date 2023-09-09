@@ -10,9 +10,7 @@ function PhotoListItem({
   addToFavorites,
   id,
   favorites }) {
-    
-       {/* pass favorites all the way down here */}
-      //  check if current id exists in the array [1, 2, 3] if the current is 4 is not favorited but if 3 then favorited 
+
   return (
     <div className="photo-list__item">
       <div>

@@ -3,17 +3,24 @@ import '../styles/HomeRoute.scss';
 import PhotoList from 'components/PhotoList';
 import TopicList from 'components/TopicList';
 import TopNavigation from 'components/TopNavigationBar';
-
-
+import PhotoDetailsModal from './PhotoDetailsModal';
+import '../styles/PhotoDetailsModal.scss';
 
 const HomeRoute = () => {
   const [favorites, setFavorites] = useState([]);
-  // id will pass as a param
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const addToFavorites = (id) => {
-    console.log(id, "this is the id");
-    // set current id as favorites
-    setFavorites((prev) =>
-      [...prev, id]);
+    // console.log(id, "this is the id");
+    setFavorites((prev) => [...prev, id]);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -21,7 +28,8 @@ const HomeRoute = () => {
       <TopNavigation favorites={favorites}>
         <TopicList />
       </TopNavigation>
-      <PhotoList addToFavorites={addToFavorites} />
+      <PhotoList addToFavorites={addToFavorites} openModal={openModal} />
+      {isModalOpen && <PhotoDetailsModal closeModal={closeModal} />}
     </div>
   );
 };

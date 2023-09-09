@@ -4,19 +4,21 @@ import "../styles/PhotoList.scss";
 
 import photos from "../mocks/photos";
 
-const PhotoList = ({addToFavorites}) => {
+const PhotoList = ({addToFavorites, openModal}) => {
   return (
     <ul className="photo-list">
       {photos.map((photo) => (
-        <PhotoListItem
-          key={photo.id}
-          id={photo.id}
-          location={photo.location}
-          imageSource={photo.urls.regular}
-          username={photo.user.username}
-          profile={photo.user.profile}
-          addToFavorites={addToFavorites}
-        />
+        <li key={photo.id} onClick={() => openModal()}>
+          <PhotoListItem
+            key={photo.id}
+            id={photo.id}
+            location={photo.location}
+            imageSource={photo.urls.regular}
+            username={photo.user.username}
+            profile={photo.user.profile}
+            addToFavorites={addToFavorites}
+          />
+        </li>
       ))}
     </ul>
   );
