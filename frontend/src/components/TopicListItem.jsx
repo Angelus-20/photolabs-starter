@@ -7,7 +7,7 @@ const TopicListItem = (props) => {
 
   return (
     <div className="topic-list__item">
-        <span>Photo topic : {label}</span>
+        <span>{label}</span>
     </div>
   );
 };

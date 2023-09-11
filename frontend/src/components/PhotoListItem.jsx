@@ -2,19 +2,12 @@ import React from "react";
 import "../styles/PhotoFavButton.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-function PhotoListItem({
-  username,
-  imageSource,
-  location,
-  profile,
-  addToFavorites,
-  id,
-  favorites }) {
+function PhotoListItem({username, imageSource, location, profile, addToFavorites, id, favorites, isFavorite }) {
 
   return (
     <div className="photo-list__item">
       <div>
-        <PhotoFavButton handleClick={addToFavorites} favorites={favorites} id={id}/>
+        <PhotoFavButton handleClick={addToFavorites} favorites={favorites} id={id} isFavorite={isFavorite}/>
         <img
           src={imageSource}
           alt={`${username}`}

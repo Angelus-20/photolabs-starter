@@ -1,37 +1,29 @@
-import React, { useState } from 'react';
 import '../styles/HomeRoute.scss';
 import PhotoList from 'components/PhotoList';
 import TopicList from 'components/TopicList';
 import TopNavigation from 'components/TopNavigationBar';
 import PhotoDetailsModal from './PhotoDetailsModal';
 import '../styles/PhotoDetailsModal.scss';
+import useApplicationData from './hooks/useApplicationData';
+import React, { useState } from 'react';
 
 const HomeRoute = () => {
-  const [favorites, setFavorites] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const addToFavorites = (id) => {
-    console.log(id, "this is the id");
-    setFavorites((prev) => [...prev, id]);
-  };
-
-  const openModal = (imageSrc) => { 
-    setSelectedImage(imageSrc); 
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setSelectedImage(null); 
-    setIsModalOpen(false);
-  };
+  const {
+    favorites,
+    addToFavorites,
+    isModalOpen,
+    openModal,
+    closeModal,
+    selectedImage,
+  } = useApplicationData();
 
   return (
     <div className="home-route">
       <TopNavigation favorites={favorites}>
         <TopicList />
       </TopNavigation>
-      <PhotoList addToFavorites={addToFavorites} openModal={openModal} />
-      {isModalOpen && <PhotoDetailsModal closeModal={closeModal} selectedImage={selectedImage} />}
+      <PhotoList addToFavorites={addToFavorites} openModal={openModal} favorites={favorites} />
+      {isModalOpen && <PhotoDetailsModal closeModal={closeModal} selectedImage={selectedImage} addToFavorites={addToFavorites} favorites={favorites} />}
     </div>
   );
 };
