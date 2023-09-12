@@ -1,29 +1,42 @@
-export default function useApplicationData() {
-  const [favorites, setFavorites] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+import { useReducer } from 'react';
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'TOGGLE_FAVORITE':
+      if (state.favorites.includes(action.id)) {
+        return { ...state, favorites: state.favorites.filter((item) => item !== action.id) };
+      } else {
+        return { ...state, favorites: [...state.favorites, action.id] };
+      }
+
+    case 'OPEN_MODAL':
+      return { ...state, selectedImage: action.image, isModalOpen: true };
+    case 'CLOSE_MODAL':
+      return { ...state, selectedImage: null, isModalOpen: false };
+    default:
+      return state;
+  }
+};
+
+export function useApplicationData() {
+  const [state, dispatch] = useReducer(reducer, {
+    favorites: [],
+    isModalOpen: false,
+    selectedImage: null,
+  });
 
   const addToFavorites = (id) => {
-    if (favorites.includes(id)) {
-      // If the ID is already in favorites, remove it
-      setFavorites((prevFavorites) => prevFavorites.filter((item) => item !== id));
-    } else {
-      // Otherwise, add it
-      setFavorites((prevFavorites) => [...prevFavorites, id]);
-    }
+    dispatch({ type: 'TOGGLE_FAVORITE', id });
   };
 
   const openModal = (image) => {
-    setSelectedImage(image);
-    setIsModalOpen(true);
+    dispatch({ type: 'OPEN_MODAL', image });
   };
 
   const closeModal = () => {
-    setSelectedImage(null);
-    setIsModalOpen(false);
+    dispatch({ type: 'CLOSE_MODAL' });
   };
 
-
- return { favorites, addToFavorites, isModalOpen, openModal, closeModal, selectedImage }; 
+  return { ...state, addToFavorites, openModal, closeModal };
 }
+

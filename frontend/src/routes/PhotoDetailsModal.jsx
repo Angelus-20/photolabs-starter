@@ -8,9 +8,6 @@ import PhotoFavButton from 'components/PhotoFavButton';
 const PhotoDetailsModal = ({ closeModal, selectedImage, favorites, addToFavorites, id, username, imageSource, location, profile }) => {
 
 
-
-  // console.log(selectedImage);
-  // const checkFavorite = favorites?.includes(id);
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={closeModal}>

@@ -4,8 +4,8 @@ import TopicList from 'components/TopicList';
 import TopNavigation from 'components/TopNavigationBar';
 import PhotoDetailsModal from './PhotoDetailsModal';
 import '../styles/PhotoDetailsModal.scss';
-import useApplicationData from './hooks/useApplicationData';
-import React, { useState } from 'react';
+import { useApplicationData } from 'hooks/useApplicationData';
+import React from 'react';
 
 const HomeRoute = () => {
   const {
