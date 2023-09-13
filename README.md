@@ -10,8 +10,8 @@ Install dependencies with `npm install` in each respective `/frontend` and `/bac
 ## Final Product
 
 !["screenshot of Main page"]()
-!["screenshot of modal page"]()
-!["screenshot of render by topic page"]()
+!["screenshot of modal page"](https://github.com/Angelus-20/photolabs-starter/blob/main/docs/modal-like-notification.jpg?raw=true)
+!["screenshot of render by topic page"](https://github.com/Angelus-20/photolabs-starter/blob/main/docs/topic-people.jpg?raw=true)
 
 
 
