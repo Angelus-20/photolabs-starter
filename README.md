@@ -7,6 +7,14 @@ The PhotoLabs project for the Web Development React course programming.
 
 Install dependencies with `npm install` in each respective `/frontend` and `/backend`.
 
+## Final Product
+
+!["screenshot of Main page"]()
+!["screenshot of modal page"]()
+!["screenshot of render by topic page"]()
+
+
+
 ## [Frontend] Running Webpack Development Server
 
 ```sh
