@@ -6,7 +6,7 @@ const TopicListItem = (props) => {
   const { label } = props;
 
   return (
-    <div className="topic-list__item">
+    <div className="topic-list__item" onClick={()=> props.fetchPhotosByTopic(props.id)}>      
         <span>{label}</span>
     </div>
   );

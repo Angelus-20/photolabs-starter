@@ -1,11 +1,11 @@
 import React from 'react';
-import "../styles/PhotoFavButton.scss";
+import '../styles/PhotoFavButton.scss';
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from 'components/PhotoList';
 import PhotoFavButton from 'components/PhotoFavButton';
 
-const PhotoDetailsModal = ({ closeModal, selectedImage, favorites, addToFavorites, id, username, imageSource, location, profile }) => {
+const PhotoDetailsModal = ({ closeModal, selectedImage, favorites, addToFavorites, similarImages, fetchPhotosByTopic, fetchSimilarImages}) => {
 
 
   return (
@@ -14,14 +14,11 @@ const PhotoDetailsModal = ({ closeModal, selectedImage, favorites, addToFavorite
         <img src={closeSymbol} alt="Close" />
       </button>
       <div className="photo-list__item">
-        {/* <div onClick={() => addToFavorites(id)} className="photo-fav-button"> */}
-        {/* <FavIcon selected={checkFavorite} id={id} /> */}
-        {/* </div> */}
         <div className='photo-details-modal__image'>
-        <PhotoFavButton handleClick={addToFavorites} favorites={favorites} id={id} />
-        <img src={selectedImage.urls.regular} className="photo-details-modal__image" alt="Selected Image" />
+          <PhotoFavButton handleClick={addToFavorites} favorites={favorites} id={selectedImage.id} />
+          <img src={selectedImage.urls.regular} className="photo-details-modal__image" alt="Selected Image" />
         </div>
-        <div className="photo-list__user-details ">
+        <div className="photo-list__user-details">
           <img
             src={selectedImage.user.profile}
             alt={selectedImage.user.username}
@@ -30,15 +27,18 @@ const PhotoDetailsModal = ({ closeModal, selectedImage, favorites, addToFavorite
           <div className="photo-list__user-info">
             <p>{selectedImage.user.username}</p>
             <p className="photo-list__user-location">
-              {selectedImage.location["city"]}, {selectedImage.location["country"]}
+              {selectedImage.location?.city}, {selectedImage.location?.country}
             </p>
           </div>
         </div>
       </div>
-      <header className="photo-details-modal__header">Similar Photos</header>
-      <main className='photo-details-modal__images'>
-        <PhotoList />
-      </main>
+      <div className="photo-details-modal__similar">
+        <header className="photo-details-modal__header">Similar Photos</header>
+        <main className='photo-details-modal__images'>
+          <PhotoList photos={similarImages} addToFavorites={addToFavorites} favorites={favorites} fetchPhotosByTopic={fetchPhotosByTopic}
+          fetchSimilarImages={fetchSimilarImages}/>
+        </main>
+      </div>
     </div>
   );
 };

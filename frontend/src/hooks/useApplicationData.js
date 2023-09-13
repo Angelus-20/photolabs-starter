@@ -30,7 +30,9 @@ export function useApplicationData() {
     favorites: [],
     isModalOpen: false,
     selectedImage: null,
-    photoData: [], // Initialize with an empty array for photo data
+    photoData: [],
+    topicData: [],
+    setSimilarImages: []
   });
 
   useEffect(() => {
@@ -47,6 +49,26 @@ export function useApplicationData() {
         // Dispatch the SET_PHOTO_DATA action with the data as payload
         // console.log(data);
         dispatch({ type: 'SET_PHOTO_DATA', data });
+      })
+      .catch((error) => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }, []); // The empty dependency array ensures the effect runs only once when the component mounts
+
+  useEffect(() => {
+    const apiUrl = '/api/topics';
+
+    fetch(apiUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Dispatch the SET_TOPIC_DATA action with the data as payload
+        // console.log(data);
+        dispatch({ type: 'SET_TOPIC_DATA', data });
       })
       .catch((error) => {
         console.error('There was a problem with the fetch operation:', error);
@@ -72,6 +94,39 @@ export function useApplicationData() {
       });
   };
 
+  const fetchPhotosByTopic = (topicId) => {
+    const apiUrl = `/api/topics/photos/${topicId}`;
+
+    fetch(apiUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Dispatch the SET_PHOTO_DATA action with the fetched data as payload
+        dispatch({ type: 'SET_PHOTO_DATA', data });
+      })
+      .catch((error) => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  };
+
+  const fetchSimilarImages = async (id) => {
+    try {
+      const response = await fetch(`/api/photos/similar/${id}`); // Replace with your API endpoint
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      // Dispatch the SET_SIMILAR_IMAGES action with the fetched data as payload
+      dispatch({ type: 'SET_SIMILAR_IMAGES', data });
+    } catch (error) {
+      console.error('Error fetching similar images:', error);
+    }
+  };
+
   const addToFavorites = (id) => {
     dispatch({ type: 'TOGGLE_FAVORITE', id });
   };
@@ -84,5 +139,5 @@ export function useApplicationData() {
     dispatch({ type: 'CLOSE_MODAL' });
   };
 
-  return { ...state, addToFavorites, openModal, closeModal, fetchTopicData };
+  return { ...state, addToFavorites, openModal, closeModal, fetchTopicData, fetchPhotosByTopic, fetchSimilarImages };
 }

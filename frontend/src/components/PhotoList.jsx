@@ -1,13 +1,13 @@
 import React from "react";
 import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
-import photos from "../mocks/photos";
 
-function PhotoList({ addToFavorites, openModal, favorites, isFavorite }) {
+
+function PhotoList({ addToFavorites, openModal, favorites, isFavorite, photos }) {
 
   return (
     <ul className="photo-list">
-      {photos.map((photo) => (
+      {photos && photos.map((photo) => (
         <li key={photo.id} onClick={() => openModal(photo)}>
           <PhotoListItem
             key={photo.id}
