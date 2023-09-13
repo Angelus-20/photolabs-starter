@@ -9,10 +9,10 @@ Install dependencies with `npm install` in each respective `/frontend` and `/bac
 
 ## Final Product
 
-!["screenshot of Main page"]()
-!["screenshot of modal page"](https://github.com/Angelus-20/photolabs-starter/blob/main/docs/modal-like-notification.jpg?raw=true)
+!["screenshot of Main page"](https://github.com/Angelus-20/photolabs-starter/blob/main/docs/home-page.jpg?raw=true)
+!["screenshot of modal page"](https://github.com/Angelus-20/photolabs-starter/blob/main/docs/modal-open.jpg?raw=true)
 !["screenshot of render by topic page"](https://github.com/Angelus-20/photolabs-starter/blob/main/docs/topic-people.jpg?raw=true)
-
+!["screenshot of like and Favorite ntofication"](https://github.com/Angelus-20/photolabs-starter/blob/main/docs/modal-like-notification.jpg?raw=true)
 
 
 ## [Frontend] Running Webpack Development Server
