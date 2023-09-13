@@ -96,7 +96,7 @@ export function useApplicationData() {
 
   const fetchPhotosByTopic = (topicId) => {
     const apiUrl = `/api/topics/photos/${topicId}`;
-
+    console.log(apiUrl)
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
@@ -115,11 +115,13 @@ export function useApplicationData() {
 
   const fetchSimilarImages = async (id) => {
     try {
-      const response = await fetch(`/api/photos/similar/${id}`); // Replace with your API endpoint
+      const response = await fetch(`/api/topics/photos/${id}`); // Replace with your API endpoint
+      console.log(response)
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
+      console.log(data)
       // Dispatch the SET_SIMILAR_IMAGES action with the fetched data as payload
       dispatch({ type: 'SET_SIMILAR_IMAGES', data });
     } catch (error) {

@@ -5,7 +5,7 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from 'components/PhotoList';
 import PhotoFavButton from 'components/PhotoFavButton';
 
-const PhotoDetailsModal = ({ closeModal, selectedImage, favorites, addToFavorites, similarImages, fetchPhotosByTopic, fetchSimilarImages}) => {
+const PhotoDetailsModal = ({ closeModal, selectedImage, favorites, addToFavorites, fetchPhotosByTopic}) => {
 
 
   return (
@@ -35,8 +35,7 @@ const PhotoDetailsModal = ({ closeModal, selectedImage, favorites, addToFavorite
       <div className="photo-details-modal__similar">
         <header className="photo-details-modal__header">Similar Photos</header>
         <main className='photo-details-modal__images'>
-          <PhotoList photos={similarImages} addToFavorites={addToFavorites} favorites={favorites} fetchPhotosByTopic={fetchPhotosByTopic}
-          fetchSimilarImages={fetchSimilarImages}/>
+          <PhotoList photos={selectedImage.similar_photos} addToFavorites={addToFavorites} favorites={favorites} fetchPhotosByTopic={fetchPhotosByTopic}/>
         </main>
       </div>
     </div>

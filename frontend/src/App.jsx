@@ -1,5 +1,5 @@
 import './App.scss';
-import React, { useEffect } from 'react';
+import React from 'react';
 import HomeRoute from 'routes/HomeRoute';
 import { useApplicationData } from 'hooks/useApplicationData'; // Import your custom hook
 
