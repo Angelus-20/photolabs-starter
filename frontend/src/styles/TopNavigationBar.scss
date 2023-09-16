@@ -18,3 +18,19 @@
   text-underline-position: auto;
   margin-left: 24px;
 }
+
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+/* Dark mode */
+.dark-mode {
+  background-color: #363636;
+  color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

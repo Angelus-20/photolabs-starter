@@ -20,6 +20,9 @@ const reducer = (state, action) => {
     case 'SET_TOPIC_DATA':
       return { ...state, topicData: action.data };
 
+    case 'TOGGLE_DARK_MODE':
+      return { ...state, isDarkMode: !state.isDarkMode };
+
     default:
       return state;
   }
@@ -32,7 +35,8 @@ export function useApplicationData() {
     selectedImage: null,
     photoData: [],
     topicData: [],
-    setSimilarImages: []
+    setSimilarImages: [],
+    isDarkMode: false
   });
 
   useEffect(() => {
@@ -77,7 +81,7 @@ export function useApplicationData() {
 
   const fetchTopicData = () => {
     const apiUrl = '/api/topics';
-  
+
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
@@ -96,7 +100,7 @@ export function useApplicationData() {
 
   const fetchPhotosByTopic = (topicId) => {
     const apiUrl = `/api/topics/photos/${topicId}`;
-    console.log(apiUrl)
+    console.log(apiUrl);
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
@@ -116,12 +120,12 @@ export function useApplicationData() {
   const fetchSimilarImages = async (id) => {
     try {
       const response = await fetch(`/api/topics/photos/${id}`); // Replace with your API endpoint
-      console.log(response)
+      console.log(response);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       // Dispatch the SET_SIMILAR_IMAGES action with the fetched data as payload
       dispatch({ type: 'SET_SIMILAR_IMAGES', data });
     } catch (error) {
@@ -141,5 +145,9 @@ export function useApplicationData() {
     dispatch({ type: 'CLOSE_MODAL' });
   };
 
-  return { ...state, addToFavorites, openModal, closeModal, fetchTopicData, fetchPhotosByTopic, fetchSimilarImages };
+  const toggleDarkMode = () => {
+    dispatch({ type: 'TOGGLE_DARK_MODE' });
+  };
+
+  return { ...state, addToFavorites, openModal, closeModal, fetchTopicData, fetchPhotosByTopic, fetchSimilarImages, toggleDarkMode };
 }

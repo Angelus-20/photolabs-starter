@@ -5,6 +5,7 @@ import PhotoDetailsModal from './PhotoDetailsModal';
 import '../styles/PhotoDetailsModal.scss';
 import { useApplicationData } from 'hooks/useApplicationData';
 import React from 'react';
+import { useEffect } from 'react';
 
 const HomeRoute = (props) => {
   const {
@@ -16,14 +17,23 @@ const HomeRoute = (props) => {
     selectedImage,
     fetchPhotosByTopic,
     fetchSimilarImages,
-    similarImages
+    similarImages,
+    isDarkMode,
+    toggleDarkMode
   } = useApplicationData();
 
-
+  // useEffect(() => {
+  //   if (isDarkMode) {
+  //     document.body.classList.add('dark-mode');
+  //   } else {
+  //     document.body.classList.remove('dark-mode');
+  //   }
+  // }, [isDarkMode]);
+console.log(isDarkMode);
   return (
-    <div className="home-route">
-      <TopNavigation favorites={favorites} topics={props.topicData} fetchPhotosByTopic={props.fetchPhotosByTopic}/>        
-      <PhotoList addToFavorites={addToFavorites} openModal={openModal} favorites={favorites} photos={props.photoData}/>
+    <div className={`home-route ${isDarkMode ? 'dark-mode' : ''}`}>
+      <TopNavigation favorites={favorites} topics={props.topicData} fetchPhotosByTopic={props.fetchPhotosByTopic} toggleDarkMode={toggleDarkMode}/>
+      <PhotoList addToFavorites={addToFavorites} openModal={openModal} favorites={favorites} photos={props.photoData} />
       {isModalOpen && (
         <PhotoDetailsModal
           closeModal={closeModal}
